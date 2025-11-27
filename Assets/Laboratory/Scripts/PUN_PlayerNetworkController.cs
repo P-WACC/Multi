@@ -3,6 +3,7 @@ using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 /// <summary>
 /// Handles the INITIAL SETUP of the player object when it spawns using PUN2.
 /// Its single responsibility is to enable/disable the correct components
@@ -16,22 +17,27 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 {
     // A static reference to the local player's camera follow target. Accessible from anywhere.
     public static Transform LocalPlayerFollowTarget { get; private set; }
+
     // Cached reference to the character's movement logic.
     private FirstPersonController _controllerLogic;
     private PlayerInput _playerInput;
     private StarterAssetsInputs _assetsInput;
-    [Tooltip("The local player instance. Use this to know if the local player is represented in theScene")]
+
+    [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
+
     void Awake()
     {
         _controllerLogic = GetComponent<FirstPersonController>();
         _playerInput = GetComponent<PlayerInput>();
         _assetsInput = GetComponent<StarterAssetsInputs>();
     }
+
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         Debug.Log(info.photonView.Owner.ToString());
         Debug.Log(info.photonView.ViewID.ToString());
+
         // photonView.IsMine is the PUN2 equivalent of isLocalPlayer or IsOwner
         if (photonView.IsMine)
         {
@@ -41,9 +47,11 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _playerInput.enabled = true;
             _assetsInput.enabled = true;
             Debug.Log("Start LocalPlayer: Local control enabled.");
+
             // Set the static follow target for the camera to find.
             LocalPlayerFollowTarget = _controllerLogic.CinemachineCameraTarget.transform;
             SetupCamera();
+
             // : we keep track of the localPlayer instance to prevent instanciation
             // when levels are synchronized
             LocalPlayerInstance = gameObject;
@@ -58,6 +66,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             Debug.Log("Proxy character. Local control disabled.");
         }
     }
+
     private void SetupCamera()
     {
         // --- Camera Setup for the Local Player ---
@@ -72,7 +81,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
         else
         {
             // The risk: This will fail if the camera isn't ready when the player spawns.
-            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn.");
+            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn. This is a race condition.");
         }
     }
 }

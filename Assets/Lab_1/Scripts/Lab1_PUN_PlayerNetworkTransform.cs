@@ -6,7 +6,7 @@ using UnityEngine;
 /// Its single responsibility is to serialize/deserialize state via OnPhotonSerializeView.
 /// </summary>
 [RequireComponent(typeof(FirstPersonController))]
-public class PUN_PlayerNetworkTransform : MonoBehaviourPun, IPunObservable
+public class Lab1_PUN_PlayerNetworkTransform : MonoBehaviourPun, IPunObservable
 {
     // Cached reference to the character's movement logic to get camera pitch.
     private FirstPersonController _controllerLogic;

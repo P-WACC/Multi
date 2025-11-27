@@ -2,9 +2,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
-public class PUN_NetworkManager : ConnectAndJoinRandom
+public class Lab1_PUN_NetworkManager : ConnectAndJoinRandom
 {
-    public static PUN_NetworkManager singleton;
+    public static Lab1_PUN_NetworkManager singleton;
     [Header("Spawn Info")]
     [Tooltip("The prefab to use for representing the player")]
     public GameObject GamePlayerPrefab;

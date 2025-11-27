@@ -65,13 +65,22 @@ PrefabInstance:
       addedObject: {fileID: -5361935687773108428}
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9183290560078332019}
+      addedObject: {fileID: -7280205310173310385}
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4022203496937461929}
+      addedObject: {fileID: 466758632930720031}
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5048976292685302012}
+      addedObject: {fileID: -8665938585921333639}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8605374882107557583}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4486126642791955655}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3187341924760871078}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &3704222148612679961 stripped
 GameObject:
@@ -97,11 +106,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: -4022203496937461929}
+  - {fileID: -3187341924760871078}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &9183290560078332019
+--- !u!114 &-7280205310173310385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,10 +119,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 3704222148612679961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86ea5d6b1feec84d859d7ff391d15c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 06d986c5f4d459643997d82d7b533a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &466758632930720031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704222148612679961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e158085a67002c42a674abfdc5edb6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUN_ShooterSelector
+--- !u!114 &-8665938585921333639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704222148612679961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b9ce3ca41690a45b9b33b4e5ab7dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUN_Shooter
+  bulletPrefab: {fileID: 3603310924562759776, guid: 36578739df5f320449c17d13cee8ddf6, type: 3}
+--- !u!114 &8605374882107557583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704222148612679961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed55cfbb057262540bf5dbd274b3c71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shooter
+  bulletPrefab: {fileID: 3603310924562759776, guid: 36578739df5f320449c17d13cee8ddf6, type: 3}
+--- !u!114 &4486126642791955655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704222148612679961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b5724ce3a6c1b439f058301dc15a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PUN_PlayerNetworkController
---- !u!114 &-4022203496937461929
+--- !u!114 &-3187341924760871078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,23 +181,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3704222148612679961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2148fd5b5b0927542bca40593d016c47, type: 3}
+  m_Script: {fileID: 11500000, guid: d93d5e6487155184582ad4fe390ed283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PUN_PlayerNetworkTransform
---- !u!114 &-5048976292685302012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704222148612679961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d82cfdf0ae00ed47b361eb7878abb59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PUN_NetworkManager
-  AutoConnect: 1
-  Version: 1
-  MaxPlayers: 4
-  playerTTL: -1
-  GamePlayerPrefab: {fileID: 0}
