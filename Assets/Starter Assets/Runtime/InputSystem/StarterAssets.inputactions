@@ -45,7 +45,16 @@
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "115b268d-025e-47fd-873e-45c47998df19",
+                    "id": "9016b740-5a8f-415b-af90-c24ea27e44fe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "af833f18-a49a-432a-bdb4-1b4d83d77331",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -231,12 +240,23 @@
                 },
                 {
                     "name": "",
-                    "id": "416b2cc3-b1d0-48b2-b3ea-1b605a29d5f1",
+                    "id": "956716e9-468e-443d-bd4e-e9ec4b29267d",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";KeyboardMouse",
+                    "groups": "KeyboardMouse",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a938a19c-9c6d-4b86-aed2-e7de148da8a9",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

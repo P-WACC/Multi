@@ -26,11 +26,17 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
+    /// Add reference UI playerInfo
+    private UIPlayerInfoManager _playerInfoManager;
+
     void Awake()
     {
         _controllerLogic = GetComponent<FirstPersonController>();
         _playerInput = GetComponent<PlayerInput>();
         _assetsInput = GetComponent<StarterAssetsInputs>();
+
+        /// Get Component In Children
+        _playerInfoManager = GetComponentInChildren<UIPlayerInfoManager>();
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -55,6 +61,10 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             // : we keep track of the localPlayer instance to prevent instanciation
             // when levels are synchronized
             LocalPlayerInstance = gameObject;
+
+            SetupCamera();
+            // Setup LocalUI
+            _playerInfoManager.SetLocalUI();
         }
         else
         {
@@ -64,6 +74,8 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _playerInput.enabled = false;
             _assetsInput.enabled = false;
             Debug.Log("Proxy character. Local control disabled.");
+
+            // This is a remote player (proxy).
         }
     }
 

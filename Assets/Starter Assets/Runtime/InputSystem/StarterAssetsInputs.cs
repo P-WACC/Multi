@@ -12,7 +12,6 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool fire;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -21,14 +20,17 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		public bool heal;
+
+		public void OnHeal(InputValue value)
+		{
+			heal = value.isPressed;
+		}
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
-		}
-		public void OnFire(InputValue value)
-		{
-			fire = value.isPressed;
 		}
 
 		public void OnLook(InputValue value)
@@ -48,6 +50,17 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		// --- MODIFICATION FOR OFFLINE ACTION ---
+		/// <summary>
+		/// Add Player can Fire a bullet
+		/// </summary>
+		public bool fire;
+		public void OnFire(InputValue value)
+		{
+			fire = value.isPressed;
+		}
+		// --- END MODIFICATION ---
 #endif
 
 
