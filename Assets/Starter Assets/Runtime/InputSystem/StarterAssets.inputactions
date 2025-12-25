@@ -54,7 +54,25 @@
                 {
                     "name": "Heal",
                     "type": "Button",
-                    "id": "af833f18-a49a-432a-bdb4-1b4d83d77331",
+                    "id": "b43e6c28-eb88-4058-9519-939c63974c4e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Change",
+                    "type": "Button",
+                    "id": "034ded64-4c9a-49c6-9bb5-37c055bdec3c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "6bd700e8-0b65-4e2b-b1c8-6ab0efd19c94",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -251,12 +269,34 @@
                 },
                 {
                     "name": "",
-                    "id": "a938a19c-9c6d-4b86-aed2-e7de148da8a9",
+                    "id": "32ed36a4-e02b-46f1-9cb2-0f91641d2374",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2141ba4d-96b8-42af-901a-b88f98e9857c",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Change",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a4b251f-027f-451f-8aa0-cca1166e5622",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

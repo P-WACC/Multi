@@ -20,14 +20,12 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-		public bool heal;
-
-		public void OnHeal(InputValue value)
-		{
-			heal = value.isPressed;
-		}
+		[Header("Menu Settings")]
+		public bool isMenuOpen = false;
+		public bool InputBlocked = false;
 
 #if ENABLE_INPUT_SYSTEM
+
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -59,6 +57,19 @@ namespace StarterAssets
 		public void OnFire(InputValue value)
 		{
 			fire = value.isPressed;
+		}
+
+		public bool heal;
+
+		public void OnHeal(InputValue value)
+		{
+			heal = value.isPressed;
+		}
+
+		public void OnPause(InputValue value)
+		{
+			if (value.isPressed)
+				ToggleMenuMode();
 		}
 		// --- END MODIFICATION ---
 #endif
@@ -92,6 +103,20 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+		public void ToggleMenuMode()
+		{
+			isMenuOpen = !isMenuOpen;
+			SetInputState(!isMenuOpen);
+		}
+		public void SetInputState(bool isGameActive)
+		{
+			cursorLocked = isGameActive;
+			cursorInputForLook = isGameActive;
+			InputBlocked = !isGameActive;
+			SetCursorState(cursorLocked);
+			if (InputBlocked)
+				look = Vector2.zero;
 		}
 	}
 
