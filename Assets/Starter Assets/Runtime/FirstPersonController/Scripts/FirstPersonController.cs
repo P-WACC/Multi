@@ -76,7 +76,18 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         // --- MODIFICATION FOR NETWORK ---
-        public Camera MainCamera => _mainCamera.GetComponent<Camera>();
+        public Camera MainCamera
+        {
+            get
+            {
+                if (_mainCamera == null)
+                {
+                    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                }
+
+                return _mainCamera.GetComponent<Camera>(); ;
+            }
+        }
         /// A flag to enable/disable the controller's internal Update loops.
         private bool _hasControl = true;
         /// Enables or disables the local input processing loops (Update/LateUpdate).

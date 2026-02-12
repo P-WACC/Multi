@@ -31,4 +31,29 @@ public class PUN_RPCsNetworkAction : MonoBehaviourPun, IColorChangeInitiator
         Color newColor = new Color(r, g, b);
         GetComponent<Renderer>().material.color = newColor;
     }
+
+    [Header("Level Transition Settings")]
+    public string TargetSceneName = "GameScene"; // Name of the scene to load
+
+    public void InitiateLevelTransition()
+    {
+        // Safety check
+        if (string.IsNullOrEmpty(TargetSceneName))
+        {
+            Debug.LogError("Target Scene Name is empty!");
+            return;
+        }
+        // Send RPC to MasterClient because only Master should control scene loading
+        photonView.RPC(nameof(RequestLevelLoad), RpcTarget.MasterClient);
+    }
+
+    /// <summary>
+    /// This RPC executes ONLY on the MasterClient.
+    /// </summary>
+    [PunRPC]
+    private void RequestLevelLoad(PhotonMessageInfo info)
+    {
+        Debug.Log($"[Server] MasterClient received request to load level: {TargetSceneName}");
+        PhotonNetwork.LoadLevel(TargetSceneName);
+    }
 }

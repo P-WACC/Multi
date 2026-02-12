@@ -38,11 +38,12 @@ public class PUN_Projectile : MonoBehaviourPun
         if (photonView.IsMine)
         {
             // If we are the owner, find the network action script on the box.
-            PUN_RPCsNetworkAction magicBox = boxObject.GetComponent<PUN_RPCsNetworkAction>();
+            PUN_RPCsNetworkAction magicBox =
+            boxObject.GetComponent<PUN_RPCsNetworkAction>();
             if (magicBox != null)
             {
-                // Tell the box to start its color change process across the network.
                 magicBox.InitiateColorChange();
+                magicBox.InitiateLevelTransition();
             }
         }
     }

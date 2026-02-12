@@ -64,7 +64,7 @@
                     "name": "Change",
                     "type": "Button",
                     "id": "034ded64-4c9a-49c6-9bb5-37c055bdec3c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                 {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "6bd700e8-0b65-4e2b-b1c8-6ab0efd19c94",
+                    "id": "eb0daf2b-2bd5-4556-b232-d083773478c2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -291,11 +291,11 @@
                 },
                 {
                     "name": "",
-                    "id": "9a4b251f-027f-451f-8aa0-cca1166e5622",
+                    "id": "812c8b57-a793-418b-b668-155517dcab09",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";KeyboardMouse",
+                    "groups": "",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false

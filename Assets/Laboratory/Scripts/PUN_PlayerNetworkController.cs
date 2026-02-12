@@ -1,8 +1,10 @@
 using Photon.Pun;
+using Photon.Realtime;
 using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles the INITIAL SETUP of the player object when it spawns using PUN2.
@@ -16,6 +18,8 @@ using UnityEngine.InputSystem;
 public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagicCallback
 {
     // A static reference to the local player's camera follow target. Accessible from anywhere.
+
+    public MeshRenderer _teamReander;
     public static Transform LocalPlayerFollowTarget { get; private set; }
 
     // Cached reference to the character's movement logic.
@@ -29,6 +33,18 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
     /// Add reference UI playerInfo
     private UIPlayerInfoManager _playerInfoManager;
 
+    private void SettingPlayerTeam(Player Sender)
+    {
+        Photon.Pun.UtilityScripts.PhotonTeam _currentTeam =
+        Photon.Pun.UtilityScripts.PhotonTeamExtensions.GetPhotonTeam(Sender);
+        if (_currentTeam != null)
+        {
+            //int colors = (int)TeamExtensions.GetTeam(Sender);
+            int colors = (int)_currentTeam.Code;
+            _teamReander.material.color = PunGameSetting.GetColor(colors);
+        }
+    }
+
     void Awake()
     {
         _controllerLogic = GetComponent<FirstPersonController>();
@@ -37,6 +53,8 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 
         /// Get Component In Children
         _playerInfoManager = GetComponentInChildren<UIPlayerInfoManager>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -74,9 +92,11 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _playerInput.enabled = false;
             _assetsInput.enabled = false;
             Debug.Log("Proxy character. Local control disabled.");
-
             // This is a remote player (proxy).
         }
+        // Setting Mesh Team
+        if (_teamReander != null)
+            SettingPlayerTeam(info.Sender);
     }
 
     private void SetupCamera()
@@ -95,5 +115,22 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             // The risk: This will fail if the camera isn't ready when the player spawns.
             Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn. This is a race condition.");
         }
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to the scene loaded event.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        // Unsubscribe to prevent errors or memory leaks.
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[System] Moved to new scene: {scene.name} ");
+        // Perform re - setup here instead of Start().
+        SetupCamera();
     }
 }

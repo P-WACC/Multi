@@ -13,27 +13,26 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 
-		[Header("Movement Settings")]
+        [Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-		[Header("Menu Settings")]
-		public bool isMenuOpen = false;
+        [Header("Menu Settings")]
+        public bool isMenuOpen = false;
 		public bool InputBlocked = false;
-
 #if ENABLE_INPUT_SYSTEM
-
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
-			MoveInput(value.Get<Vector2>());
+            if (!InputBlocked)
+				MoveInput(value.Get<Vector2>());
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if (cursorInputForLook)
+			if(cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -41,44 +40,50 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+            if (!InputBlocked)
+                JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+            if (!InputBlocked)
+                SprintInput(value.isPressed);
 		}
 
-		// --- MODIFICATION FOR OFFLINE ACTION ---
-		/// <summary>
-		/// Add Player can Fire a bullet
-		/// </summary>
-		public bool fire;
-		public void OnFire(InputValue value)
-		{
-			fire = value.isPressed;
-		}
+        // --- MODIFICATION FOR OFFLINE ACTION ---
+        /// <summary>
+        /// Add Player can Fire a bullet
+        /// </summary>
+        public bool fire;
+        public void OnFire(InputValue value)
+        {
+            if (!InputBlocked)
+                fire = value.isPressed;
+        }
 
 		public bool heal;
 
 		public void OnHeal(InputValue value)
 		{
-			heal = value.isPressed;
+            if (!InputBlocked)
+                heal = value.isPressed;
 		}
 
-		public void OnPause(InputValue value)
-		{
-			if (value.isPressed)
-				ToggleMenuMode();
-		}
-		// --- END MODIFICATION ---
+        public void OnPause(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                ToggleMenuMode();
+            }
+        }
+        // --- END MODIFICATION ---
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		}
+		} 
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -94,7 +99,7 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-
+		
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -104,20 +109,26 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-		public void ToggleMenuMode()
-		{
-			isMenuOpen = !isMenuOpen;
-			SetInputState(!isMenuOpen);
-		}
-		public void SetInputState(bool isGameActive)
-		{
-			cursorLocked = isGameActive;
-			cursorInputForLook = isGameActive;
-			InputBlocked = !isGameActive;
-			SetCursorState(cursorLocked);
+
+        // --- MODIFICATION FOR PAUSE ACTION ---
+        public void ToggleMenuMode()
+        {
+            isMenuOpen = !isMenuOpen;
+            SetInputState(!isMenuOpen);
+        }
+
+        public void SetInputState(bool isGameActive)
+        {
+            cursorLocked = isGameActive;
+            cursorInputForLook = isGameActive;
+            InputBlocked = !isGameActive;
+
+            SetCursorState(cursorLocked);
+
 			if (InputBlocked)
 				look = Vector2.zero;
-		}
-	}
+        }
+        // --- END MODIFICATION ---
+    }
 
 }

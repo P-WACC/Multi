@@ -28,8 +28,17 @@ EditorBuildSettings:
     path: Assets/Lab/Scenes/PUN_Playground.unity
     guid: 498dea9d9ba397940b4a1f32badbccbe
   - enabled: 1
+    path: Assets/Lab/Scenes/Launcher-PunExt.unity
+    guid: 47403e61090018c47b2e4ea080168194
+  - enabled: 1
     path: Assets/Lab/Scenes/Lab_2_PUN_Playground.unity
     guid: 153c6df2c8c20ab4d8fec199b77ad0d3
+  - enabled: 0
+    path: Assets/Lab/Scenes/Lab_2_PUN_Playground2.unity
+    guid: 74c32b8e1cd589f47bc4b26e2a6f99d3
+  - enabled: 0
+    path: Assets/Lab/Scripts/LAB8/Playground-Pun.unity
+    guid: fce6fce36e53fad44a7f82a73ba2efe2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
